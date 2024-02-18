@@ -37,6 +37,8 @@ classifiers = [
 
 dependencies = [
     'upywin32 ; os_name == "nt"',
+    'phreeqcrm; platform_python_implementation == CPython',
+    'pandas; platform_python_implementation == CPython',
 ]
 
 dynamic = ["version"]
