@@ -1,5 +1,7 @@
 [build-system]
-requires = ["setuptools"] #, "setuptools_scm[toml]>=6.2"]
+requires = [
+    "setuptools>=60",
+    "setuptools-scm>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -33,22 +35,17 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Hydrology"
 ]
 
-version = "0.5.1"
-
 dependencies = [
     'upywin32 ; os_name == "nt"',
 ]
 
-# dynamic = ["version"]
+dynamic = ["version"]
 
 [project.urls]
 home-page = "https://www.phreeqpy.com/"
 
-
 [tool.setuptools]
 zip-safe = false
-
-
 
 [tool.setuptools_scm]
 write_to = "src/phreeqpy/_version.py"
