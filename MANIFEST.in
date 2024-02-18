@@ -1,0 +1,6 @@
+include src/phreeqpy/iphreeqc/*.so.*
+include src/phreeqpy/iphreeqc/*.dylib
+include src/phreeqpy/iphreeqc/*.dll
+include src/phreeqpy/iphreeqc/phreeqc3/*.so
+include src/phreeqpy/iphreeqc/phreeqc3/*.dylib
+include src/phreeqpy/iphreeqc/phreeqc3/*.dll

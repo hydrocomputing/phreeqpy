@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools"] #, "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phreeqpy"
+description = "Python tools for PHREEQC."
+authors = [
+    {name = "Mike Müller", email = 'mmueller@hydrocomputing.com'},
+    ]
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = [
+    "PHREEQC",
+    "hydrogeochemistry",
+    "modeling",
+    "modeling coupling"
+    ]
+license = {text = "BSD-3-Clause"}
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: BSD License",
+  "Programming Language :: Python :: 3",
+  "Environment :: Console",
+  "Framework :: Jupyter :: JupyterLab",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Operating System :: MacOS :: MacOS X",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Hydrology"
+]
+
+version = "0.5.1"
+
+dependencies = [
+    'upywin32 ; os_name == "nt"',
+]
+
+# dynamic = ["version"]
+
+[project.urls]
+home-page = "https://www.phreeqpy.com/"
+
+
+[tool.setuptools]
+zip-safe = false
+
+
+
+[tool.setuptools_scm]
+write_to = "src/phreeqpy/_version.py"
