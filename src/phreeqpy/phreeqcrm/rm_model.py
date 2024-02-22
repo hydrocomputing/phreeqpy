@@ -55,7 +55,10 @@ class RMVariable:
         self.name
         if self._is_in_only:
             return None
-        self._value = self._rm_inst.get_value(self.name, self._value)
+        if self.is_pointable:
+            self._value = self._rm_inst.get_value_ptr(self.name)
+        else:
+            self._value = self._rm_inst.get_value(self.name, self._value)
         if isinstance(self._value, list):
             self._value = np.array(self._value)
         if len(self._value) == 1:
@@ -118,7 +121,7 @@ class RMVariables:
             is_input=name in self._input_var_names,
             is_output=name in self._output_var_names,
             is_read_only=name in self._readonly_var_names,
-            is_pointable=name in self._readonly_var_names,
+            is_pointable=name in self._pointable_var_names,
             is_in_only=name in self._in_only_names,
             )
         return self._variables.setdefault(name, variable)
@@ -143,6 +146,23 @@ class RMVariables:
     def __repr__(self):
         return f'{self.__class__.__name__}({self._rm_inst})'
 
+class Concentrations:
+    """All concentrations."""
+
+    def __init__(self, model):
+        self._model = model
+        self.values_1d = self._model.rm_variables['Concentrations'].value
+        self.values_2d = self.values_1d.reshape(
+            len(self._model.component_names), self._model.number_of_cells)
+
+    def to_dataframe(self):
+        """Concentrations."""
+        return pd.DataFrame(
+            data=self.values_2d.T,
+            columns=self._model.component_names)
+
+    def _repr_html_(self):
+        return self.to_dataframe()._repr_html_()
 
 class PhreeqcRMModel:
     """Wrapper around BMIPhreeqcRM."""
@@ -161,6 +181,7 @@ class PhreeqcRMModel:
         self.number_of_cells = self._rm.get_value_ptr("GridCellCount")[0]
         self._molalities = {name: np.empty(self.number_of_cells)
                             for name in self._molality_names}
+        self.concentrations = Concentrations(self)
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self.yaml_file_name!r})'
@@ -189,6 +210,11 @@ class PhreeqcRMModel:
     def update(self):
         """Run one time step."""
         self._rm.update()
+
+    def write_conc_back(self):
+        """Write modified concentration back."""
+        self._rm.set_value("Concentrations", self.concentrations.values_1d)
+
 
 def _make_value_repr(obj, names):
     values = []
