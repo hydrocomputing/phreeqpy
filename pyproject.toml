@@ -35,13 +35,20 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Hydrology"
 ]
 
-dependencies = [
-    'upywin32 ; os_name == "nt"',
-    'phreeqcrm; platform_python_implementation == CPython',
-    'pandas; platform_python_implementation == CPython',
-]
 
 dynamic = ["version"]
+
+dependencies = [
+    "pywin32; os_name == 'nt'"
+]
+
+[project.optional-dependencies]
+phreeqcrm = [
+    "phreeqcrm; platform_python_implementation == 'CPython'",
+    "yaml-cpp; platform_python_implementation == 'CPython'",
+    "pandas; platform_python_implementation == 'CPython'",
+    "matplotlib; platform_python_implementation == 'CPython'",
+]
 
 [project.urls]
 home-page = "https://www.phreeqpy.com/"
