@@ -173,12 +173,13 @@ class Concentrations:
     def _repr_html_(self):
         return self.to_dataframe()._repr_html_()
 
+
 class PhreeqcRMModel:
     """Wrapper around BMIPhreeqcRM."""
 
     _exclude_from_molalities = ['Charge']
 
-    def __init__(self, yaml_file_name):
+    def __init__(self, yaml_file_name, auto_update=True):
         self.yaml_file_name = yaml_file_name
         self._rm = BMIPhreeqcRM()
         self._rm.initialize(yaml_file_name)
@@ -191,6 +192,8 @@ class PhreeqcRMModel:
         self._molalities = {name: np.empty(self.number_of_cells)
                             for name in self._molality_names}
         self.concentrations = Concentrations(self)
+        if auto_update:
+            self.update()
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self.yaml_file_name!r})'
