@@ -151,9 +151,18 @@ class Concentrations:
 
     def __init__(self, model):
         self._model = model
+        self.names = self._model.component_names
         self.values_1d = self._model.rm_variables['Concentrations'].value
         self.values_2d = self.values_1d.reshape(
             len(self._model.component_names), self._model.number_of_cells)
+        self._indices = {name: index for index, name in enumerate(self.names)}
+
+    def __getitem__(self, name):
+        return self.values_2d[self._indices[name]]
+
+    def __setitem__(self, name, values):
+        assert self[name].shape == values.shape
+        self.values_2d[self._indices[name]] = values
 
     def to_dataframe(self):
         """Concentrations."""
