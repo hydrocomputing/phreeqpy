@@ -227,6 +227,16 @@ class PhreeqcRMModel:
         """Write modified concentration back."""
         self._rm.set_value("Concentrations", self.concentrations.values_1d)
 
+    def get_initial_concentrations(self, solution_number):
+        """
+        Get initial concentrations.
+
+        Returns dictionary wih concentration names as keys and concentration
+        values as values. Solutions are defined in the file `*.pqi`.
+        """
+        init_concs = self._rm.InitialPhreeqc2Concentrations([solution_number])
+        return {name: value for name, value in zip(self.component_names, init_concs)}
+
 
 def _make_value_repr(obj, names):
     values = []
