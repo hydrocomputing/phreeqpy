@@ -1,0 +1,38 @@
+
+Changes in version 0.6
+----------------------
+
+* Add support for PhreeqcRM
+* Add IPhreeqc 3.7.3  for Linux ARM
+
+Changes in version 0.5
+----------------------
+
+* Update documentation to PHREEQC3
+* Add IPhreeqc 3.7.3 and mac arm64 version
+* Removed download, use `pip` to install
+* Add makefile to automate build steps
+* Add parallel example
+
+Changes in version 0.4
+----------------------
+
+* Add `pywin32` dependency to `pip` install
+* Remove setting of `doc`attribute on PhreeqPy objects because it is not
+  supported by new IPhreeqcCOM versions.
+* Hint that there is no 64-bit DLL for Windows. Instead the COM-Server version
+  should be used.
+
+Changes in version 0.3
+----------------------
+
+* Add `set_output_file_off()`and `set_output_file_on()` that call IPhreeqc's `SetOutputFileOn`
+
+Changes in version 0.2
+----------------------
+
+* Add more IPhreeqc functions.
+* Add support for Mac OS X.
+* Add error handling turning IPhreeqc errors into Python exceptions.
+* Add Python 3 compatibility. Tested with Python 3.3.
+* Add documentation in addition to example on website.

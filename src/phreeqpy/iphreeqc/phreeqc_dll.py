@@ -32,7 +32,15 @@ class IPhreeqc(object):
             if sys.platform == 'win32':
                 dll_name = 'phreeqc3/IPhreeqc-3.7.3.dll'
             elif sys.platform.startswith('linux'):
-                dll_name = 'phreeqc3/libiphreeqc-3.7.3.so'
+                machine = os.uname()[-1]
+                if machine == 'x86_64':
+                    dll_name = 'phreeqc3/libiphreeqc-3.7.3.so'
+                elif machine in ['arm64', 'aarch64', 'arm']:
+                    dll_name = 'phreeqc3/linux_arm_libiphreeqc-3.7.3.so'
+                else:
+                    msg = 'Processor {machine} not supported'.format(
+                        machine=machine)
+                    raise NotImplementedError(msg)
             elif sys.platform == 'darwin':
                 machine = os.uname()[-1]
                 if machine == 'x86_64':
@@ -40,7 +48,7 @@ class IPhreeqc(object):
                 elif machine == 'arm64':
                     dll_name = 'phreeqc3/libiphreeqc-3.7.3-m1.dylib'
                 else:
-                    msg = 'Processor {machine} not suppported'.format(
+                    msg = 'Processor {machine} not supported'.format(
                         machine=machine)
                     raise NotImplementedError(msg)
             else:
