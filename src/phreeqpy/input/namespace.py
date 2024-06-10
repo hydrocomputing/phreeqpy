@@ -7,20 +7,20 @@
 # This is just a namespace flattening thing.
 
 
-"""Phreeqpy input tools for PHREEQC.
+"""
+Phreeqpy input tools for PHREEQC.
 
 This is just a namespace beautifier.
 The code is in sibling package `input`.
 """
 
-
 from phreeqpy.input.base import phreeqpy_help
 from phreeqpy.input.keywords.advection import Advection
 from phreeqpy.input.keywords.equilibrium_phases import EquilibriumPhases
 
+
 class Keywords(object):
-    """Manage how the user can access keywords. 
-    """
+    """Manage how the user can access keywords."""
 
     def __init__(self):
         self.keyword_list = ['Advection', 'EquilibriumPhases']
@@ -30,6 +30,6 @@ class Keywords(object):
 
     def __dir__(self):
         return self.keyword_list + self.helpers
-    
+
     def help(self, obj=None, verbose=False):
         return phreeqpy_help(obj, verbose)

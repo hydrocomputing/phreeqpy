@@ -10,8 +10,7 @@ These types are
 
 
 class DataType(object):
-    """Parent class for all datatypes
-    """
+    """Parent class for all datatypes"""
 
     def __init__(self, doc, name):
         object.__setattr__(self, 'initialized', False)
@@ -33,21 +32,20 @@ class DataType(object):
 
 
 class PositiveInteger(DataType):
-    """Make sure value is a positive integer.
-    """
+    """Make sure value is a positive integer."""
 
     def __init__(self, value, doc, name):
         super(PositiveInteger, self).__init__(doc, name)
         if not isinstance(value, int) or value < 0:
-            raise ValueError('Excpected positive integer for "%s". %s found.'
-                             % (name, value))
+            raise ValueError(
+                'Excpected positive integer for "%s". %s found.' % (name, value)
+            )
         self.value = value
         self.initialized = True
 
 
 class PositiveFloat(DataType):
-    """Make sure value is a positive float.
-    """
+    """Make sure value is a positive float."""
 
     def __init__(self, value, doc, name):
         super(PositiveFloat, self).__init__(doc, name)
@@ -57,37 +55,39 @@ class PositiveFloat(DataType):
         except TypeError:
             do_raise = True
         if do_raise or value < 0:
-            raise ValueError('Excpected positive float for %s. %s found.'
-                             % (name, value))
+            raise ValueError(
+                'Excpected positive float for %s. %s found.' % (name, value)
+            )
         self.value = value
         self.initialized = True
 
+
 class Float(DataType):
-    """Make sure value is a positive float.
-    """
+    """Make sure value is a positive float."""
 
     def __init__(self, value, doc, name):
         super(Float, self).__init__(doc, name)
         if not isinstance(value, float):
-            raise ValueError('Excpected positive float for %s. %s found.'
-                             % (name, value))
+            raise ValueError(
+                'Excpected positive float for %s. %s found.' % (name, value)
+            )
         self.value = value
         self.initialized = True
-        
 
 
 class NumberRange(DataType):
-    """Make sure we got a range of numbers.
-    """
+    """Make sure we got a range of numbers."""
 
     def __init__(self, value, doc, name):
         super(NumberRange, self).__init__(doc, name)
-        msg = ('Only a single positive integer or a string with a single'
-               'positive integer or a string with a range in the form "3-6" is'
-               'allowed. Got %s.' % value)
+        msg = (
+            'Only a single positive integer or a string with a single'
+            'positive integer or a string with a range in the form "3-6" is'
+            'allowed. Got %s.' % value
+        )
         value = str(value)
         number_range = value.split()
-        if len(number_range) !=1:
+        if len(number_range) != 1:
             raise ValueError(msg)
         try:
             numbers = value.split('-')
@@ -98,21 +98,27 @@ class NumberRange(DataType):
             start = int(split_numbers[0])
             end = int(split_numbers[1])
             if start >= end:
-                raise ValueError(('Start value %d must be smaller than end'
-                                  'value %d for %s.') % (start, end, name))
+                raise ValueError(
+                    (
+                        'Start value %d must be smaller than end'
+                        'value %d for %s.'
+                    )
+                    % (start, end, name)
+                )
         self.value = value
         self.initialized = True
 
 
 class CellNumberList(DataType):
-    """Make sure we got a lis of numbers and ranges.
-    """
+    """Make sure we got a lis of numbers and ranges."""
 
     def __init__(self, value, doc, name):
         super(CellNumberList, self).__init__(doc, name)
-        msg = ('Only a single positive integer or a string with a list of'
-               'positive integers or a string with a list of ranges in the'
-               'form "3-6 9-12" is allowed. Got %s.' % value)
+        msg = (
+            'Only a single positive integer or a string with a list of'
+            'positive integers or a string with a list of ranges in the'
+            'form "3-6 9-12" is allowed. Got %s.' % value
+        )
         value = str(value)
         numbers = value.split()
         if len(numbers) < 1:
@@ -123,8 +129,7 @@ class CellNumberList(DataType):
 
 
 class Bool(DataType):
-    """Make sure we got True or False.
-    """
+    """Make sure we got True or False."""
 
     def __init__(self, value, doc, name):
         super(Bool, self).__init__(doc, name)
@@ -134,9 +139,9 @@ class Bool(DataType):
         self.value = value
         self.initialized = True
 
+
 class String(DataType):
-    """Make sure we got a string.
-    """
+    """Make sure we got a string."""
 
     def __init__(self, value, doc, name):
         super(String, self).__init__(doc, name)

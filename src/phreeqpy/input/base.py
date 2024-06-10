@@ -43,13 +43,13 @@ def phreeqpy_help(thing=None, verbose=False):
                                            subsequent_indent='    ')
         print help_text
     elif hasattr(thing, '__phreeqpy_help__'):
-        print '\n' + '#' * 70
-        print 'Name:\n     ', thing.__name__
-        print 'Type:\n     ', thing.__class__.__name__
-        print 'Help:'
-        print textwrap.fill(thing.__phreeqpy_help__(),
+        print('\n' + '#' * 70)
+        print('Name:\n     ', thing.__name__)
+        print('Type:\n     ', thing.__class__.__name__)
+        print('Help:')
+        print(textwrap.fill(thing.__phreeqpy_help__(),
                             initial_indent='      ',
-                            subsequent_indent='      ')
+                            subsequent_indent='      '))
         print
     else:
         help(thing)
@@ -198,19 +198,19 @@ class DataLine(object):
                     if not istuple:
                         optional[-1].append(entry)
                     order.append(entry)
-                    
+
         order = []
         exlusive = []
         optional = [[]]
         flatten(self.entries)
         optional = [set(entries) for entries in optional]
         number_optional = [len(entries) for entries in optional]
-        print optional
-        print number_optional
+        print(optional)
+        print(number_optional)
         cum_numbers = [number_optional[0]]
         for number in number_optional[1:]:
             cum_numbers.append(cum_numbers[-1] + number)
-        print cum_numbers
+        print(cum_numbers)
         #raise
         self.order = order
         self.names = [entry.name for entry in self.order]
@@ -225,8 +225,8 @@ class DataLine(object):
         if missing:
             robj = self.required.pop()
             aobj = available.pop()
-            print aobj, robj.name
-            print id(aobj), id(robj)
+            print(aobj, robj.name)
+            print(id(aobj), id(robj))
             raise NameError('The following names must be specifed:\n'
                             '\n'.join(missing))
         for pair in self.exlusive:
@@ -236,7 +236,7 @@ class DataLine(object):
         for name in line:
             if name not in self.allowed:
                 raise NameError('Name "%s" is not allowed' % name +
-                                'Allowed are only the following names:\n' + 
+                                'Allowed are only the following names:\n' +
                                 '\n'.join(self.names))
         clean_line = []
         for entry in self.order:
@@ -250,5 +250,3 @@ class DataLine(object):
 
     def __str__(self):
         return str(self.entries)[1:-1]
-
-
