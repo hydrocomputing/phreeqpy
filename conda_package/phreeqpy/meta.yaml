@@ -1,0 +1,29 @@
+{% set pyproject = load_file_data('../../pyproject.toml', from_recipe_dir=True) %}
+{% set project = pyproject.get('project') %}
+
+
+package:
+    name: {{ project.get('name') }}
+    version: {{ GIT_DESCRIBE_TAG }}
+
+source:
+  path: ../..
+
+build:
+    noarch: python
+    number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - matplotlib
+    - pandas
+    - phreeqcrm
+    - pywin32  # [win]
+    - yaml-cpp
+
+about:
+  home: hydrocomputing
+  license: BSD
