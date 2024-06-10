@@ -3,4 +3,7 @@ _version.py
 *.egg-info
 dist/**
 **/.ipynb_checkpoints/**
-doc/_build/**
+doc/_build/**# pixi environments
+.pixi
+*.egg-info
+doc/_build
