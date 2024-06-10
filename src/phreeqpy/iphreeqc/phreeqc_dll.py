@@ -35,7 +35,7 @@ class IPhreeqc(object):
                 machine = os.uname()[-1]
                 if machine == 'x86_64':
                     dll_name = 'phreeqc3/libiphreeqc-3.7.3.so'
-                elif machine in ['arm64', 'aarch64', 'arm']:
+                elif machine in ['arm64', 'aarch64']:
                     dll_name = 'phreeqc3/linux_arm_libiphreeqc-3.7.3.so'
                 else:
                     msg = 'Processor {machine} not supported'.format(
