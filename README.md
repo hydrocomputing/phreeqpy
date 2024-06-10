@@ -1,6 +1,6 @@
 # PhreeqPy: Python Tools for PHREEQC
 
-PhreeqPy provides Python tools to work with
+PhreeqPy is a collection of Python tools to work with
 [PHREEQC](https://www.usgs.gov/software/phreeqc-version-3).
 
 It provides access to the
@@ -15,9 +15,25 @@ demonstrates with an example how PhreeqPy works.
 
 Starting from version 0.6, PhreeqPy supports
 [PhreeqcRM](https://water.usgs.gov/water-resources/software/PHREEQC/PhreeqcRM_AbstractAWR.pdf).
+Due to missing dependencies on PyPi, PhreeqcRM is only available in the conda
+package, not via PyPi.
 
 Install with:
 
-    pip install phreeqpy[phreeqcrm]
+    conda install -c hydrocomputing phreeqpy
+
+or
+
+    mamba install -c hydrocomputing phreeqpy
+
+For pixi add this to your `pixi.toml`:
+
+    [dependencies]
+    phreeqpy = { version = "*", channel = "hydrocomputing" }
 
 See `examples/phreeqcrm/advect.py` for an usage example for PhreeqcRM.
+
+The IPhreeqc interface, i.e. all functionality before version 0.6,
+is still available via a `pip` install:
+
+    pip install phreeqpy
