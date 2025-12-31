@@ -235,7 +235,7 @@ class PhreeqcRMModel:
         values as values. Solutions are defined in the file `*.pqi`.
         """
         init_concs = self._rm.InitialPhreeqc2Concentrations([solution_number])
-        return {name: value for name, value in zip(self.component_names, init_concs)}
+        return {name: float(value) for name, value in zip(self.component_names, init_concs)}
 
 
 def _make_value_repr(obj, names):
