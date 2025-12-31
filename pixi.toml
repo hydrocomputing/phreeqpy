@@ -1,0 +1,17 @@
+[workspace]
+authors = ["Mike Müller <mmueller@hydrocomputing@com>"]
+channels = ["conda-forge"]
+name = "phreeqpy"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "3.14.*"
+phreeqcrm = ">=0.0.16,<0.0.17"
+matplotlib = ">=3.10.8,<4"
+pandas = ">=2.3.3,<3"
+
+[pypi-dependencies]
+phreeqpy = { path = ".", editable = true }

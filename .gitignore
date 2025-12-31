@@ -7,3 +7,6 @@ doc/_build/**# pixi environments
 .pixi
 *.egg-info
 doc/_build
+# pixi environments
+.pixi/*
+!.pixi/config.toml
