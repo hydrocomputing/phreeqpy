@@ -38,6 +38,7 @@ def plot_molalities(molalities, pore_volumes):
     ax.set_xlabel('Pore volumes')
     ax.set_ylabel('Millimoles per kilogram water')
     ax.legend()
+    plt.savefig("ex11.png")
     plt.show()
 
 
