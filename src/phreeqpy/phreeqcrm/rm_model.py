@@ -18,7 +18,7 @@ class BMIPhreeqcRM(phreeqcrm.BMIPhreeqcRM):
 
 
 class RMVariable:
-    """PhreecRM variable."""
+    """PhreeqcRM variable."""
 
     def __init__(
             self,
@@ -47,8 +47,7 @@ class RMVariable:
 
     @property
     def value(self):
-        """
-        Value.
+        """Value.
 
         Either scalar or 1d NumPy array.
         """
@@ -145,6 +144,7 @@ class RMVariables:
 
     def __repr__(self):
         return f'{self.__class__.__name__}({self._rm_inst})'
+
 
 class Concentrations:
     """All concentrations."""
