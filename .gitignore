@@ -11,3 +11,7 @@ doc/_build
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+# PhreeqcRM intermediate files
+**.chem.txt
+**.log.txt
+**.dump
