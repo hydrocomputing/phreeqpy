@@ -231,7 +231,7 @@ class PhreeqcRMModel:
         """
         Get initial concentrations.
 
-        Returns dictionary wih concentration names as keys and concentration
+        Returns dictionary with concentration names as keys and concentration
         values as values. Solutions are defined in the file `*.pqi`.
         """
         init_concs = self._rm.InitialPhreeqc2Concentrations([solution_number])
