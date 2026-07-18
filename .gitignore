@@ -2,6 +2,7 @@ _version.py
 **/__pycache__/**
 *.egg-info
 dist/**
+build/**
 **/.ipynb_checkpoints/**
 doc/_build/**# pixi environments
 .pixi
